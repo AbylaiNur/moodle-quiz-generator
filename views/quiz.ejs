@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Quiz</title>
+</head>
+
+
+
+<body>
+
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+    </ul>
+</header>
+
+<div class="container-sm px-5 mt-3">
+    <main class="mx-5 px-5">
+        <p><i>Let's now review generated questions and choose those you do not want to include in your quiz</i></p>
+        <hr>
+        <form action="/download" method="post">
+            <% questions.forEach((question, i) => { %>
+                <div class="card mb-3" style="flex-direction: row;">
+                    <div class="d-flex align-items-center justify-content-center p-3 ">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="<%= question.join('\n') %>" name="<%= i %>" id="<%= i %>">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <code>
+                            <% question.forEach(line => { %>
+                                <%= line %>
+                                <br>
+                            <% }) %>
+                        </code>
+                    </div>
+                </div>
+            <% }) %>
+            <div class="mb-5">
+                <div class="card-footer text-end">
+                    <a href="/" class="btn btn-primary">Return</a>
+                    <button type="submit" class="btn btn-primary">Download</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
