@@ -42,8 +42,3 @@ ANSWER: D`
 export {
     getQuizAiken
 }
-
-/*
-
-
- */

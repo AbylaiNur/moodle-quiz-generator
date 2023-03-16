@@ -8,7 +8,9 @@ Moodle Quiz Generator is a static website that uses ChatGPT-3 for generating qui
 ```bash
 npm install
 ```
-Create ".env" file in the project directory. Inside of ".env":
+Create ".env" file in the project directory.
+
+Inside of ".env":
 
 ```bash
 OPENAI_API_KEY=<openai api key>
@@ -21,7 +23,11 @@ In order to start the application, execute the following command in the project 
 ```bash
 nodemon app
 ```
+Open localhost:<port>
 
+The default port is 3000.
+
+When you generate a quiz, it will be downloaded in Moodle XML format..
 
 ## Contributors
 

@@ -19,6 +19,13 @@
     <main class="mx-5 px-5">
         <p><i>Let's now review generated questions and choose those you do not want to include in your quiz</i></p>
         <hr>
+        <div class="alert alert-danger" role="alert">
+            <h4>Warning!</h4>
+            Some questions could be wrongly generated or have wrong answers.<br>
+            Please check the questions before you use them.<br>
+            <hr>
+            In the end only students are going to suffer!
+        </div>
         <form action="/download" method="post">
             <% questions.forEach((question, i) => { %>
                 <div class="card mb-3" style="flex-direction: row;">
@@ -47,3 +54,7 @@
     </main>
 </div>
 </body>
+
+<script>
+
+</script>
