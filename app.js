@@ -71,18 +71,29 @@ app.get('/quiz/context', getQuizLimiter, async (req, res) => {
     }
 })
 
-app.post('/download', (req, res) => {
+app.post('/download', async (req, res) => {
     const questions = Object.values(req.body)
     const questionsString = questions.join('\n\n');
     let quizXML = ''
     aikenToMoodleXML(questionsString, (result, error) => {
         quizXML = result
     });
-    fs.writeFileSync('public/quiz.xml', quizXML,{encoding:'utf8' ,flag:'w'})
+    const name = String((new Date()).getTime())
+    fs.writeFile(`${name}.xml`, quizXML, function (err) {
+        if (err) throw err;
+        console.log("File created")
+        res.download(`${name}.xml`, 'quiz.xml', function (err1) {
+            if (err1) throw err1;
+            fs.unlink(`${name}.xml`, function (err) {
+                if (err2) throw err2;
+                console.log('File deleted!');
+            });
+        })
+    })
 
-    res.download('public/quiz.xml')
 
-    fs.writeFileSync('public/quiz.xml', '',{encoding:'utf8' ,flag:'w'})
+
+
 })
 
 app.listen(process.env.PORT || 3000)
