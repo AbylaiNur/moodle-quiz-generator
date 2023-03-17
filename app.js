@@ -1,8 +1,9 @@
 import express from "express"
-const app = express()
-import { getQuizAikenTopic, getQuizAikenContext } from "./helpers/chatgpt.js";
 import aikenToMoodleXML from "aiken-to-moodlexml";
 import fs from "fs"
+const app = express()
+import { getQuizAikenTopic, getQuizAikenContext } from "./helpers/chatgpt.js";
+import { getQuizLimiter } from "./middleware/rateLimiter.js";
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -21,7 +22,7 @@ app.get('/topic', (req, res) => {
     res.render('topic')
 })
 
-app.get('/quiz/topic', async (req, res) => {
+app.get('/quiz/topic', getQuizLimiter, async (req, res) => {
     try {
         let quizAiken = []
         for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 10) {
@@ -46,7 +47,7 @@ app.get('/quiz/topic', async (req, res) => {
 })
 
 
-app.get('/quiz/context', async (req, res) => {
+app.get('/quiz/context', getQuizLimiter, async (req, res) => {
     try {
         let quizAiken = []
         for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 10) {

@@ -25,7 +25,19 @@
                     <hr/>
                     <div class="px-4 mb-4">
                         <p class="text-center"><strong>Provide context or article for your quiz</strong></p>
-                        <textarea name="context" class="form-control" id="context" rows="7"></textarea>
+                        <textarea name="context" class="form-control" id="context" rows="7" placeholder="Sometimes, we need to perform different actions based on different conditions.
+
+To do that, we can use the if statement and the conditional operator ?, that’s also called a “question mark” operator.
+
+The “if” statement
+The if(...) statement evaluates a condition in parentheses and, if the result is true, executes a block of code.
+
+For example:
+
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+
+if (year == 2015) alert( 'You are right!' );
+"></textarea>
                     </div>
                 </div>
 
@@ -41,7 +53,7 @@
                         <p class="text-center"><strong>How many questions are there?</strong></p>
                         <p>Be aware. It is going to generate number of questions that is the nearest larger number divisible by 10</p>
                         <div class="form-outline mb-4">
-                            <input class="form-control" name="questionsCount" id="idk" rows="4">
+                            <input class="form-control" name="questionsCount" id="idk" rows="4" placeholder="20">
                         </div>
                     </div>
                 </div>
@@ -64,11 +76,15 @@
             </div>
         </div>
 
-        <div class="card-footer text-end mb-5">
+        <div class="card-footer text-end mb-3">
             <button type="submit" class="btn btn-primary">Generate</button>
         </div>
     </form>
-
+    <footer class="mt-auto text-center">
+        <div class="inner">
+            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
+        </div>
+    </footer>
 </div>
 
 </body>

@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from "openai"
+import { encode } from "gpt-3-encoder"
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -25,7 +26,7 @@ ANSWER: D`
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
-            max_tokens: 4000 - Math.round(prompt.length / 4),
+            max_tokens: 4097 - encode(prompt).length,
             temperature: 0.5
         });
         return completion.data.choices[0].text;
@@ -55,7 +56,7 @@ ANSWER: D`
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
-            max_tokens: 4000 - Math.round(prompt.length / 4),
+            max_tokens: 4097 - encode(prompt).length,
             temperature: 0.5
         });
         return completion.data.choices[0].text;
