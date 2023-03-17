@@ -84,7 +84,7 @@ app.post('/download', async (req, res) => {
         console.log("File created")
         res.download(`${name}.xml`, 'quiz.xml', function (err1) {
             if (err1) throw err1;
-            fs.unlink(`${name}.xml`, function (err) {
+            fs.unlink(`${name}.xml`, function (err2) {
                 if (err2) throw err2;
                 console.log('File deleted!');
             });
