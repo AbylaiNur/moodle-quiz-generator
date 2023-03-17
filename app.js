@@ -10,7 +10,7 @@ app.use(express.urlencoded( { extended: true} ));
 
 
 app.get('/', (req, res) => {
-    res.redirect('/context')
+    res.render('home')
 })
 
 app.get('/context', (req, res) => {

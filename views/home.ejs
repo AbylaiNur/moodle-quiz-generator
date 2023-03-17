@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home</title>
+</head>
+
+<body>
+<div class="container d-flex p-3 mx-auto flex-column text-center" style="height: 100vh">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
+            <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
+        </ul>
+    </header>
+    <main role="main" class="inner cover my-auto">
+        <h1 class="cover-heading">Quiz Generator</h1>
+        <p class="lead" style="padding-left: 20rem; padding-right: 20rem;">
+            Quiz Generator is a static website which uses ChatGPT-3 for generating quizzes. You can use it to create quizzes based on a <strong>context</strong> (article) or a <strong>topic</strong>, and download it in MoodleXML format.
+        </p>
+        <div>
+            <span class="lead me-2">
+                <a href="/context" class="btn btn-lg btn-secondary" style="width: 7rem;">Context</a>
+            </span>
+            <span class="lead">
+                <a href="/topic" class="btn btn-lg btn-secondary" style="width: 7rem;">Topic</a>
+            </span>
+        </div>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a></p>
+        </div>
+    </footer>
+</div>
+
+</body>
