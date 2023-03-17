@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home</title>
+</head>
+
+<body>
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+    </ul>
+</header>
+
+<div class="container" style="width:60%">
+    <form action="/quiz/context" method="get" >
+        <div class="mx-0 mx-sm-auto">
+            <div class="card">
+
+                <div class="modal-body">
+
+                    <hr/>
+                    <div class="px-4 mb-4">
+                        <p class="text-center"><strong>Provide context or article for your quiz</strong></p>
+                        <textarea name="context" class="form-control" id="context" rows="7"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="my-4 mx-sm-auto">
+            <div class="card">
+                <div class="modal-body">
+
+                    <hr/>
+                    <div class="px-4">
+                        <p class="text-center"><strong>How many questions are there?</strong></p>
+                        <p>Be aware. It is going to generate number of questions that is the nearest larger number divisible by 10</p>
+                        <div class="form-outline mb-4">
+                            <input class="form-control" name="questionsCount" id="idk" rows="4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="d-flex" role="group">
+                <input type="radio" class="btn-check" name="difficulty" value="easy" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio1">Easy</label>
+
+                <input type="radio" class="btn-check" name="difficulty" value="medium" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio2">Medium</label>
+
+                <input type="radio" class="btn-check" name="difficulty" value="hard" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio3">Hard</label>
+
+                <input type="radio" class="btn-check" name="difficulty" value="very hard" id="btnradio4" autocomplete="off">
+                <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio4">Very Hard</label>
+            </div>
+        </div>
+
+        <div class="card-footer text-end mb-5">
+            <button type="submit" class="btn btn-primary">Generate</button>
+        </div>
+    </form>
+
+</div>
+
+</body>

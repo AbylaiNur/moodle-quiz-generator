@@ -9,7 +9,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 
-async function getQuizAiken (topic, questionsCount, difficulty) {
+async function getQuizAikenTopic (topic, questionsCount, difficulty) {
     try {
         const prompt = `
 Create ${difficulty} MCQ test with ${questionsCount} questions.
@@ -25,7 +25,7 @@ ANSWER: D`
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
-            max_tokens: 4097 - prompt.length,
+            max_tokens: 4000 - Math.round(prompt.length / 4),
             temperature: 0.5
         });
         return completion.data.choices[0].text;
@@ -39,6 +39,38 @@ ANSWER: D`
     }
 }
 
+async function getQuizAikenContext (context, questionsCount, difficulty) {
+    try {
+        const prompt = `
+${context}
+Create a ${difficulty} quiz with ${questionsCount} MCQ questions for the article above.
+Questions form: 
+Question 
+A. a 
+B. a 
+C. a 
+D. a 
+ANSWER: D`
+
+        const completion = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: prompt,
+            max_tokens: 4000 - Math.round(prompt.length / 4),
+            temperature: 0.5
+        });
+        return completion.data.choices[0].text;
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.status);
+            console.log(error.response.data);
+        } else {
+            console.log(error.message);
+        }
+    }
+}
+
+
 export {
-    getQuizAiken
+    getQuizAikenTopic,
+    getQuizAikenContext
 }

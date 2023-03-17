@@ -1,6 +1,6 @@
 import express from "express"
 const app = express()
-import { getQuizAiken } from "./helpers/chatgpt.js";
+import { getQuizAikenTopic, getQuizAikenContext } from "./helpers/chatgpt.js";
 import aikenToMoodleXML from "aiken-to-moodlexml";
 import fs from "fs"
 
@@ -10,16 +10,49 @@ app.use(express.urlencoded( { extended: true} ));
 
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.redirect('/context')
 })
 
-app.get('/test', async (req, res) => {
+app.get('/context', (req, res) => {
+    res.render('context')
+})
+
+app.get('/topic', (req, res) => {
+    res.render('topic')
+})
+
+app.get('/quiz/topic', async (req, res) => {
     try {
         let quizAiken = []
         for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 10) {
             let quiz = ''
             while (quiz.split('ANSWER').length - 1 !== 10) {
-                quiz = await getQuizAiken(req.query.topic, 10, req.query.difficulty)
+                quiz = await getQuizAikenTopic(req.query.topic, 10, req.query.difficulty)
+            }
+            quiz = quiz.replaceAll(/([1-9]. )|([1-9][0-9]. )/gm, '')
+            quiz = quiz.trim()
+            quiz = quiz.split('\n\n')
+            quizAiken = quizAiken.concat(quiz)
+        }
+
+        for (let i = 0; i < quizAiken.length; i++) {
+            quizAiken[i] = quizAiken[i].split('\n');
+        }
+        res.render("quiz",  {questions : quizAiken})
+    } catch (error) {
+        console.log(error.message)
+        res.redirect('/')
+    }
+})
+
+
+app.get('/quiz/context', async (req, res) => {
+    try {
+        let quizAiken = []
+        for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 10) {
+            let quiz = ''
+            while (quiz.split('ANSWER').length - 1 !== 10) {
+                quiz = await getQuizAikenContext(req.query.context, 10, req.query.difficulty)
             }
             quiz = quiz.replaceAll(/([1-9]. )|([1-9][0-9]. )/gm, '')
             quiz = quiz.trim()
