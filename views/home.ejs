@@ -3,37 +3,207 @@
 <head>
     <%- include('./partials/head') %>
     <title>Home</title>
+    <style>
+        body{
+            margin-top:20px;
+        }
+
+        /* ===== LOGIN PAGE ===== */
+        .login-box {
+                box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+        }
+
+        @media (min-width: 992px) {
+        .login-box {
+            margin: 40px 0;
+        }
+        }
+
+        .login-box .form-wrap {
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+        .login-box .form-wrap {
+            padding: 45px;
+        }
+        }
+
+        @media (min-width: 992px) {
+        .login-box .form-wrap {
+            margin-top: -40px;
+            margin-bottom: -40px;
+            padding: 60px;
+        }
+        }
+
+        .login-box .socials a {
+            box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .login-section {
+            position: relative;
+            z-index: 0;
+        }
+
+
+        .form-group .zmdi {
+            position: absolute;
+            z-index: 1;
+            color: #fff;
+            background-color: #6c757d;
+            border-radius: 5px;
+            height: 100%;
+            width: 45px;
+            text-align: center;
+            font-size: 20px;
+            padding-top: 13px;
+        }
+
+        .form-group input[type='text'], .form-group input[type='email'], .form-group input[type='password'] {
+            padding-left: 60px;
+        }
+
+        .form-control {
+            border: 1px solid #e1e1e1;
+            box-shadow: none;
+            border-radius: 5px;
+            transition: all .3s ease;
+            background-color: #fff;
+            color: #858585;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .login-box .socials a {
+            box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+        }
+        .socials a {
+            background-color: #6893e1;
+            border-radius: 50%;
+            -webkit-box-shadow: 0 3px 2px 0 #516cd9;
+            box-shadow: 0 3px 2px 0 #516cd9;
+            text-align: center;
+            color: #fff;
+            padding: 5px;
+            padding-top: 3px;
+            font-size: 16px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+    </style>
+
 </head>
 
 <body>
-<div class="container d-flex p-3 mx-auto flex-column text-center" style="height: 100vh">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
-            <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
-        </ul>
-    </header>
-    <main role="main" class="inner cover my-auto">
-        <h1 class="cover-heading">Quiz Generator</h1>
-        <p class="lead" style="padding-left: 20rem; padding-right: 20rem;">
-            Quiz Generator is a static website which uses ChatGPT-3 for generating quizzes. You can use it to create quizzes based on a <strong>context</strong> (article) or a <strong>topic</strong>, and download it in MoodleXML format.
-        </p>
-        <div>
-            <span class="lead me-2">
-                <a href="/context" class="btn btn-lg btn-secondary" style="width: 7rem;">Context</a>
-            </span>
-            <span class="lead">
-                <a href="/topic" class="btn btn-lg btn-secondary" style="width: 7rem;">Topic</a>
-            </span>
-        </div>
-    </main>
+    <div class="container d-flex p-3 mx-auto flex-column text-center" style="height: 60vh">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
+                <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
+            </ul>
+        </header>
+        <main role="main" class="inner cover my-auto">
+            <h1 class="cover-heading">Quiz Generator</h1>
+            <p class="lead" style="padding-left: 20rem; padding-right: 20rem;">
+                Quiz Generator is a static website which uses ChatGPT-3 for generating quizzes. You can use it to create quizzes based on a <strong>context</strong> (article) or a <strong>topic</strong>, and download it in MoodleXML format.
+            </p>
+            <div>
+                <span class="lead me-2">
+                    <a href="/context" class="btn btn-lg btn-secondary" style="width: 7rem;">Context</a>
+                </span>
+                <span class="lead">
+                    <a href="/topic" class="btn btn-lg btn-secondary" style="width: 7rem;">Topic</a>
+                </span>
+            </div>
+        </main>
+    </div>
+    <div class="container">
+                <div class="row">
+                    <div class="col-md-11 mt-60 mx-md-auto">
+                        <div class="login-box bg-white pl-lg-5 pl-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-6">
+                                    <div class="form-wrap bg-white">
+                                        <h3 class="btm-sep pb-3 mb-2">Registration</h3>
+                                        <p style="font-size:13px;">Please sign up, if it's your first time here</p>
+                                        <form class="form" method="post" action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group mb-3 position-relative">
+                                                        <span class="zmdi zmdi-email"></span>
+                                                        <input type="text" id="name" class="form-control" placeholder="Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group mb-3 position-relative">
+                                                        <span class="zmdi zmdi-account"></span>
+                                                        <input type="email" id="email" class="form-control" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group mb-3 position-relative">
+                                                        <span class="zmdi zmdi-email"></span>
+                                                        <input type="password" id="password" class="form-control" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid col-12 mt-30">
+                                                    <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark">Register
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="content" style="width:80%; margin:auto">
+                                        <div class="border-bottom">
+                                            <h4 class="c-black">Login</h4>
+                                        </div>
+                                        <form class="form" method="post" action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group mb-3 position-relative">
+                                                        <span class="zmdi zmdi-account"></span>
+                                                        <input type="email" id="email" class="form-control" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group mb-3 position-relative">
+                                                        <span class="zmdi zmdi-email"></span>
+                                                        <input type="password" id="password" class="form-control" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid col-12 mt-30">
+                                                    <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark mb-3">Sign In
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="text-center">
+                                            <h5 class="mb-3 mt-n1">Register Or Sign In With</h5>
+                                            <div class="socials">
+                                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                                <a href="#"><i class="bi bi-twitter"></i></a>
+                                                <a href="/auth/google"><i class="bi bi-google"></i></a>
+                                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <footer class="mt-auto text-center">
-        <div class="inner">
-            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
-        </div>
-    </footer>
-</div>
-
+                <footer class="text-center mt-5">
+                    <div class="inner">
+                        <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
+                    </div>
+                </footer>
+            </div>
 </body>

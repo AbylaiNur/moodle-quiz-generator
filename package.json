@@ -14,10 +14,14 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
+    "express-session": "^1.17.3",
     "fs": "^0.0.1-security",
     "gpt-3-encoder": "^1.1.4",
     "nodemon": "^2.0.21",
     "openai": "^3.2.1",
+    "passport": "^0.6.0",
+    "passport-google-oauth": "^2.0.0",
+    "pg": "^8.10.0",
     "request-ip": "^3.3.0"
   },
   "type": "module"
