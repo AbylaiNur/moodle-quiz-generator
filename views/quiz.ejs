@@ -28,11 +28,11 @@
             <hr>
             In the end only students are going to suffer!
         </div>
-        <% if(data.logs){data.logs.forEach((log) => { %>
-            <a href="/quiz/topic/history/?id=<%= log.id %>"><%= log.id %></a>
-        <% })} %>
+        <% data.logs.forEach((log) => { %>
+            <a href="/quiz/<%= data.type %>/?id=<%= log.id %>"><%= log.id %></a>
+        <% }) %>
         <form action="/download" method="post">
-            <% if(data.questions){data.questions.forEach((question, i) => { %>
+            <% data.questions.forEach((question, i) => { %>
                 <div class="card mb-3" style="flex-direction: row;">
                     <div class="d-flex align-items-center justify-content-center p-3 ">
                         <div class="form-check">
@@ -48,7 +48,7 @@
                         </code>
                     </div>
                 </div>
-            <% })} %>
+            <% }) %>
             <div class="mb-5">
                 <div class="card-footer text-end">
                     <a href="/" class="btn btn-primary">Return</a>
