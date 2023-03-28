@@ -1,6 +1,6 @@
 import passport from "passport";
 import {OAuth2Strategy} from "passport-google-oauth";
-import {pool} from "../db/connection.js"
+import { User } from "../db/models/user.js"
 
 passport.use(new OAuth2Strategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
@@ -9,14 +9,13 @@ passport.use(new OAuth2Strategy({
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
-
-    const param = [profile.name.givenName, profile.name.familyName, profile.emails[0].value];
+    const user = new User;
     (async () => {
       try {
-        const results = await pool.query("SELECT id, firstname, lastname, email from users WHERE email=$1",[profile.emails[0].value]);
+        const results = await user.findUserByEmail([profile.emails[0].value]);
         if(!results.rows.length){
-          const user = await pool.query("INSERT INTO users(firstname, lastname, email) VALUES($1, $2, $3) RETURNING id, firstname, lastname, email", param);
-          return done(null, user.rows[0]);
+          const results = await user.createNewUser([profile.name.givenName, profile.name.familyName, profile.emails[0].value]);
+          return done(null, results.rows[0]);
         }
         return done(null, results.rows[0]);
       } catch (error) {
@@ -31,7 +30,8 @@ passport.serializeUser(function(user, done) {
 });
  
 passport.deserializeUser(function(user, done) {
-  pool.query("SELECT id, firstname, lastname, email from users WHERE id=$1",[user]).then(
+  const acc = new User;
+  acc.findUserById([user]).then(
     (result) =>{
       done(null, result.rows[0]);
     }

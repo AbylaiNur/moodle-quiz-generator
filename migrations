@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS history (
     id bigserial PRIMARY KEY,
     created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),
     user_id bigint NOT NULL REFERENCES users ON DELETE CASCADE,
-    quiz text[] NOT NULL
+    quiz text[] NOT NULL,
+    type text NOT NULL
 );
