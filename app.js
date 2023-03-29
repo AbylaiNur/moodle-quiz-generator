@@ -50,9 +50,9 @@ app.get('/topic', isLoggedIn, (req, res) => {
     res.render('topic')
 })
 
-app.get('/quiz/topic', isLoggedIn, getQuizLimiter, quiz_view)
+app.get('/quiz/topic', isLoggedIn, quiz_view)
 
-app.get('/quiz/context', isLoggedIn, getQuizLimiter, context_view)
+app.get('/quiz/context', isLoggedIn, context_view)
 
 app.post('/download', download_quiz)
 

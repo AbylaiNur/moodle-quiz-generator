@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS users (
     id bigserial PRIMARY KEY,
     created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),
     firstname text NOT NULL,
-    lastname text NOT NULL,
     email citext UNIQUE NOT NULL,
     version uuid NOT NULL DEFAULT gen_random_uuid()
 );
@@ -11,6 +10,8 @@ CREATE TABLE IF NOT EXISTS history (
     id bigserial PRIMARY KEY,
     created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),
     user_id bigint NOT NULL REFERENCES users ON DELETE CASCADE,
+    topic text NOT NULL,
     quiz text[] NOT NULL,
+    num_questions integer NOT NULL,
     type text NOT NULL
 );

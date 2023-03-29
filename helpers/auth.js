@@ -14,7 +14,7 @@ passport.use(new OAuth2Strategy({
       try {
         const results = await user.findUserByEmail([profile.emails[0].value]);
         if(!results.rows.length){
-          const results = await user.createNewUser([profile.name.givenName, profile.name.familyName, profile.emails[0].value]);
+          const results = await user.createNewUser([profile.name.givenName, profile.emails[0].value]);
           return done(null, results.rows[0]);
         }
         return done(null, results.rows[0]);
