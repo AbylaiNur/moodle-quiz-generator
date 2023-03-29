@@ -27,7 +27,7 @@ const context_view = async (req, res) => {
             for (let i = 0; i < quizAiken.length; i++) {
                 quizAiken[i] = quizAiken[i].split('\n');
             }
-            history.saveHistory([req.user.id, quizAiken, 'context']);
+            history.saveHistory([req.user.id, req.query.context, quizAiken, Number(req.query.questionsCount),'context']);
         }
 
         res.render("quiz", { data: { questions: quizAiken, logs: historyList.rows, type: 'context' } })
@@ -60,7 +60,7 @@ const quiz_view = async (req, res) => {
             for (let i = 0; i < quizAiken.length; i++) {
                 quizAiken[i] = quizAiken[i].split('\n');
             }
-            history.saveHistory([req.user.id, quizAiken, 'topic']);
+            history.saveHistory([req.user.id, req.query.topic, quizAiken, Number(req.query.questionsCount), 'topic']);
         }
         res.render("quiz", { data: { questions: quizAiken, logs: historyList.rows, type: 'topic' } })
     } catch (error) {

@@ -11,6 +11,10 @@ const pool = new Pool({
     port: process.env.PGPORT,
 });
 
+
+pool.query("")
+
+
 export{
     pool
 };
