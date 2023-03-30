@@ -3,96 +3,80 @@
 
 <head>
     <%- include('./partials/head') %>
-        <title>Quiz</title>
+    <title>Quiz</title>
 </head>
-
 
 
 <body>
 
-    <div class="container-sm px-5 mt-3 py-3">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
-                <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
-                <li class="nav-item"><a href="/logout" class="nav-link" aria-current="page">Log out</a></li>
-            </ul>
-        </header>
-        <div class="row">
-            <main class="col mx-4 px-4">
-                <p><i>Let's now review generated questions and choose those you do not want to include in your quiz</i>
-                </p>
+<div class="container-sm px-5 mt-3 py-3">
+    <%- include('./partials/header') %>
+    <div class="row">
+        <main class="col mx-4 px-4">
+            <p><i>Let's now review generated questions and choose those you do not want to include in your quiz</i>
+            </p>
+            <hr>
+            <div class="alert alert-danger" role="alert">
+                <h4>Warning!</h4>
+                Some questions could be wrongly generated or have wrong answers.<br>
+                Please check the questions before you use them.<br>
                 <hr>
-                <div class="alert alert-danger" role="alert">
-                    <h4>Warning!</h4>
-                    Some questions could be wrongly generated or have wrong answers.<br>
-                    Please check the questions before you use them.<br>
-                    <hr>
-                    In the end only students are going to suffer!
-                </div>
+                In the end only students are going to suffer!
+            </div>
 
-                <form class="col" action="/download" method="post">
-                    <% data.questions.forEach((question, i)=> { %>
-                        <div class="card mb-3" style="flex-direction: row;">
-                            <div class="d-flex align-items-center justify-content-center p-3 ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<%= question.join('\n') %>"
-                                        name="<%= i %>" id="<%= i %>">
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <code>
-                            <% question.forEach(line => { %>
-                                <%= line %>
-                                <br>
-                            <% }) %>
-                        </code>
+            <form class="col" action="/download" method="post">
+                <% data.questions.forEach((question, i)=> { %>
+                    <div class="card mb-3" style="flex-direction: row;">
+                        <div class="d-flex align-items-center justify-content-center p-3 ">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="<%= question.join('\n') %>"
+                                       name="<%= i %>" id="<%= i %>">
                             </div>
                         </div>
-                        <% }) %>
-                            <div class="mb-5">
-                                <div class="card-footer text-end">
-                                    <a href="/" class="btn btn-primary">Return</a>
-                                    <button type="submit" class="btn btn-primary">Download</button>
-                                </div>
-                            </div>
-                </form>
-            </main>
-            <div class="col-2" style="padding:0px">
-                <h5 style="text-align: center;">History</h5>
-                <div class="row">
-                    <% data.logs.forEach((log)=> { %>
-                        <div class = "text-truncate"> 
+                        <div class="card-body">
+                            <code>
+                                <% question.forEach(line => { %>
+                                    <%= line %>
+                                    <br>
+                                <% }) %>
+                            </code>
+                        </div>
+                    </div>
+                <% }) %>
+                <div class="mb-5">
+                    <div class="card-footer text-end">
+                        <a href="/" class="btn btn-primary">Return</a>
+                        <button type="submit" class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <div class="col-2" style="padding:0px">
+            <h5 style="text-align: center;">History</h5>
+            <div class="row">
+                <% data.logs.forEach((log)=> { %>
+                    <div class="text-truncate">
                             <span style="font-size:15px">
                                 <%= log.num_questions %> Q.
                             </span>
-                            <a href="/quiz/<%= data.type %>/?id=<%= log.id %>" style="text-decoration: none; font-size: 14px;">
-                                <%= log.topic %>
-                            </a>
-                        </div>
-                    <% }) %>
-                </div>
-                <div class="toast" role="alert">
-                    <div >
-                      <img src="..." class="rounded me-2" alt="...">
-                      <strong class="me-auto">Bootstrap</strong>
-                      <small>11 mins ago</small>
-                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <a href="/quiz/<%= data.type %>/?id=<%= log.id %>"
+                           style="text-decoration: none; font-size: 14px;">
+                            <%= log.topic %>
+                        </a>
                     </div>
-                  </div>
+                <% }) %>
+            </div>
+            <div class="toast" role="alert">
+                <div>
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
             </div>
         </div>
-
-        <footer class="mt-auto text-center">
-            <div class="inner">
-                <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a
-                        href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
-            </div>
-        </footer>
     </div>
+
+    <%- include('./partials/footer') %>
+</div>
 </body>
-
-<script>
-
-</script>

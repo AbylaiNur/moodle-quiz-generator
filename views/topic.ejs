@@ -8,14 +8,8 @@
 <body>
 
 <div class="container py-3" style="width:60%">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
-            <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
-            <li class="nav-item"><a href="/logout" class="nav-link" aria-current="page">Log out</a></li>
-        </ul>
-    </header>
+    <%- include('./partials/header') %>
+
     <div class="alert alert-info" role="alert">
         <h4>Advice</h4>
         We recommend you to generate only theoretical questions.<br>
@@ -46,7 +40,8 @@
                     <hr/>
                     <div class="px-4">
                         <p class="text-center"><strong>How many questions are there?</strong></p>
-                        <p>Be aware. It is going to generate number of questions that is the nearest larger number divisible by 10</p>
+                        <p>Be aware. It is going to generate number of questions that is the nearest larger number
+                            divisible by 10</p>
                         <div class="form-outline mb-4">
                             <input class="form-control" name="questionsCount" id="idk" rows="4" placeholder="20">
                         </div>
@@ -57,16 +52,19 @@
 
         <div class="my-4">
             <div class="d-flex" role="group">
-                <input type="radio" class="btn-check" name="difficulty" value="easy" id="btnradio1" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="difficulty" value="easy" id="btnradio1" autocomplete="off"
+                       checked>
                 <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio1">Easy</label>
 
-                <input type="radio" class="btn-check" name="difficulty" value="medium" id="btnradio2" autocomplete="off">
+                <input type="radio" class="btn-check" name="difficulty" value="medium" id="btnradio2"
+                       autocomplete="off">
                 <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio2">Medium</label>
 
                 <input type="radio" class="btn-check" name="difficulty" value="hard" id="btnradio3" autocomplete="off">
                 <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio3">Hard</label>
 
-                <input type="radio" class="btn-check" name="difficulty" value="very hard" id="btnradio4" autocomplete="off">
+                <input type="radio" class="btn-check" name="difficulty" value="very hard" id="btnradio4"
+                       autocomplete="off">
                 <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio4">Very Hard</label>
             </div>
         </div>
@@ -75,11 +73,7 @@
             <button type="submit" class="btn btn-primary mb-3">Generate</button>
         </div>
     </form>
-    <footer class="mt-auto text-center">
-        <div class="inner">
-            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
-        </div>
-    </footer>
+    <%- include('./partials/footer') %>
 </div>
 
 </body>

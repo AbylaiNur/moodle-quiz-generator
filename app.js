@@ -6,7 +6,14 @@ import passport from "passport"
 
 import "./helpers/auth.js";
 import { google_callback, auth_logout, failure } from "./controllers/authController.js";
-import { context_view, download_quiz, quiz_view } from "./controllers/quizController.js"
+import {
+    context_view,
+    download_quiz,
+    history_view,
+    home_view,
+    quiz_context_view,
+    quiz_topic_view,
+} from "./controllers/quizController.js"
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -22,8 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
  
 function isLoggedIn(req, res, next) {
-    req.user ? next() : res.sendStatus(401);
-  }
+    req.user ? next() : res.redirect('/auth/google');
+}
 
 app.get('/auth/google', 
     passport.authenticate('google', { scope: [ 'email', 'profile' ] })
@@ -38,23 +45,23 @@ app.get('/logout', auth_logout);
 
 app.get('/failure', failure);
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
+app.get('/', home_view);
 
-app.get('/context', isLoggedIn, (req, res) => {
-    res.render('context')
-})
+app.get('/context', isLoggedIn, context_view)
 
-app.get('/topic', isLoggedIn, (req, res) => {
-    res.render('topic')
-})
+app.get('/topic', isLoggedIn, )
 
-app.get('/quiz/topic', isLoggedIn, quiz_view)
+app.get('/quiz/topic', isLoggedIn, quiz_topic_view)
 
-app.get('/quiz/context', isLoggedIn, context_view)
+app.get('/quiz/context', isLoggedIn, quiz_context_view)
+
+app.get('/history', isLoggedIn, history_view)
 
 app.post('/download', download_quiz)
+
+app.get('/settings', isLoggedIn ,(req, res) => {
+    res.render('settings', { user : req.user });
+})
 
 app.listen(process.env.PORT || 3000)
 

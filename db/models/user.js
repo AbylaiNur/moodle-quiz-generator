@@ -16,6 +16,9 @@ class User{
         return pool.query("INSERT INTO users(firstname, email) VALUES($1, $2) RETURNING id, firstname, email", 
             param);
     }
+    saveApiKey(param){
+        return pool.query("INSERT INTO ")
+    }
 }
 
 export{

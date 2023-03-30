@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS users (
     created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),
     firstname text NOT NULL,
     email citext UNIQUE NOT NULL,
-    version uuid NOT NULL DEFAULT gen_random_uuid()
+    version uuid NOT NULL DEFAULT gen_random_uuid(),
+    apiKey text
 );
 
 CREATE TABLE IF NOT EXISTS history (
