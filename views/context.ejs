@@ -10,7 +10,8 @@
 
 <div class="container py-3" style="width:60%">
     <%- include('./partials/header') %>
-    <form action="/quiz/context" method="get">
+
+    <form action="/quiz/context" method="get" >
         <div class="mx-0 mx-sm-auto">
             <div class="card">
 
@@ -20,16 +21,11 @@
                     <div class="px-4 mb-4">
                         <p class="text-center"><strong>Provide context or article for your quiz</strong></p>
                         <textarea name="context" class="form-control" id="context" rows="7" placeholder="Sometimes, we need to perform different actions based on different conditions.
-
 To do that, we can use the if statement and the conditional operator ?, that’s also called a “question mark” operator.
-
 The “if” statement
 The if(...) statement evaluates a condition in parentheses and, if the result is true, executes a block of code.
-
 For example:
-
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
-
 if (year == 2015) alert( 'You are right!' );
 "></textarea>
                     </div>
@@ -45,8 +41,7 @@ if (year == 2015) alert( 'You are right!' );
                     <hr/>
                     <div class="px-4">
                         <p class="text-center"><strong>How many questions are there?</strong></p>
-                        <p>Be aware. It is going to generate number of questions that is the nearest larger number
-                            divisible by 10</p>
+                        <p>Be aware. It is going to generate number of questions that is the nearest larger number divisible by 10</p>
                         <div class="form-outline mb-4">
                             <input class="form-control" name="questionsCount" id="idk" rows="4" placeholder="20">
                         </div>
@@ -57,19 +52,16 @@ if (year == 2015) alert( 'You are right!' );
 
         <div class="my-4">
             <div class="d-flex" role="group">
-                <input type="radio" class="btn-check" name="difficulty" value="easy" id="btnradio1" autocomplete="off"
-                       checked>
+                <input type="radio" class="btn-check" name="difficulty" value="easy" id="btnradio1" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio1">Easy</label>
 
-                <input type="radio" class="btn-check" name="difficulty" value="medium" id="btnradio2"
-                       autocomplete="off">
+                <input type="radio" class="btn-check" name="difficulty" value="medium" id="btnradio2" autocomplete="off">
                 <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio2">Medium</label>
 
                 <input type="radio" class="btn-check" name="difficulty" value="hard" id="btnradio3" autocomplete="off">
                 <label class="btn btn-outline-secondary flex-fill mx-3" for="btnradio3">Hard</label>
 
-                <input type="radio" class="btn-check" name="difficulty" value="very hard" id="btnradio4"
-                       autocomplete="off">
+                <input type="radio" class="btn-check" name="difficulty" value="very hard" id="btnradio4" autocomplete="off">
                 <label class="btn btn-outline-secondary  flex-fill mx-3" for="btnradio4">Very Hard</label>
             </div>
         </div>

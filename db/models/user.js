@@ -1,26 +1,30 @@
 import {pool} from "../connection.js"
 
-class User{
-    getUsers () {
+class User {
+    getUsers() {
         return pool.query("SELECT firstname, email from users");
     }
-    findUserById(param){
+
+    findUserById(param) {
         return pool.query("SELECT id, firstname, email from users WHERE id=$1",
             param);
     }
-    findUserByEmail(param){
+
+    findUserByEmail(param) {
         return pool.query("SELECT id, firstname, email from users WHERE email=$1",
             param);
     }
-    createNewUser(param){
-        return pool.query("INSERT INTO users(firstname, email) VALUES($1, $2) RETURNING id, firstname, email", 
+
+    createNewUser(param) {
+        return pool.query("INSERT INTO users(firstname, email) VALUES($1, $2) RETURNING id, firstname, email",
             param);
     }
-    saveApiKey(param){
+
+    saveApiKey(param) {
         return pool.query("INSERT INTO ")
     }
 }
 
-export{
+export {
     User
 }
