@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home</title>
+</head>
+<body>
+
+<div class="container p-3 d-flex flex-column" style="height: 100vh">
+    <%- include('./partials/header') %>
+    <form class="inner cover my-auto" method="post" action="/settings/save">
+        <label for="open-api-key" class="form-label">Open Api Key</label>
+        <input type="email" class="form-control" id="open-api-key">
+        <div class="form-text">We'll never share your api key with anyone else.</div>
+        <button type="submit">Save</button>
+    </form>
+    <div class="mt-auto">
+        <%- include('./partials/footer') %>
+    </div>
+</div>
+
+</body>

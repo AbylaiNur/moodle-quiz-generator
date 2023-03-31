@@ -1,70 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('./partials/head') %>
     <title>Quiz</title>
 </head>
 
 
-
 <body>
 
 <div class="container-sm px-5 mt-3 py-3">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
-            <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
-            <li class="nav-item"><a href="/logout" class="nav-link" aria-current="page">Log out</a></li>
-        </ul>
-    </header>
-    <main class="mx-5 px-5">
-        <p><i>Let's now review generated questions and choose those you do not want to include in your quiz</i></p>
-        <hr>
-        <div class="alert alert-danger" role="alert">
-            <h4>Warning!</h4>
-            Some questions could be wrongly generated or have wrong answers.<br>
-            Please check the questions before you use them.<br>
+    <%- include('./partials/header') %>
+    <div class="row">
+        <main class="mx-4 px-4">
+            <p>
+                <i>Let's now review generated questions and choose those you do not want to include in your quiz</i>
+            </p>
             <hr>
-            In the end only students are going to suffer!
-        </div>
-        <% if(data.logs){data.logs.forEach((log) => { %>
-            <a href="/quiz/topic/history/?id=<%= log.id %>"><%= log.id %></a>
-        <% })} %>
-        <form action="/download" method="post">
-            <% if(data.questions){data.questions.forEach((question, i) => { %>
-                <div class="card mb-3" style="flex-direction: row;">
-                    <div class="d-flex align-items-center justify-content-center p-3 ">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="<%= question.join('\n') %>" name="<%= i %>" id="<%= i %>">
+            <div class="alert alert-danger" role="alert">
+                <h4>Warning!</h4>
+                Some questions could be wrongly generated or have wrong answers.<br>
+                Please check the questions before you use them.<br>
+                <hr>
+                In the end only students are going to suffer!
+            </div>
+
+            <form class="col" action="/download" method="post">
+                <% data.questions.forEach((question, i)=> { %>
+                    <div class="card mb-3" style="flex-direction: row;">
+                        <div class="d-flex align-items-center justify-content-center p-3 ">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="<%= question.join('\n') %>"
+                                       name="<%= i %>" id="<%= i %>">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <code>
+                                <% question.forEach(line => { %>
+                                    <%= line %>
+                                    <br>
+                                <% }) %>
+                            </code>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <code>
-                            <% question.forEach(line => { %>
-                                <%= line %>
-                                <br>
-                            <% }) %>
-                        </code>
+                <% }) %>
+                <div class="mb-5">
+                    <div class="card-footer text-end">
+                        <a href="/" class="btn btn-primary">Return</a>
+                        <button type="submit" class="btn btn-primary">Download</button>
                     </div>
                 </div>
-            <% })} %>
-            <div class="mb-5">
-                <div class="card-footer text-end">
-                    <a href="/" class="btn btn-primary">Return</a>
-                    <button type="submit" class="btn btn-primary">Download</button>
-                </div>
-            </div>
-        </form>
-    </main>
-    <footer class="mt-auto text-center">
-        <div class="inner">
-            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
-        </div>
-    </footer>
+            </form>
+        </main>
+    </div>
+
+    <%- include('./partials/footer') %>
 </div>
 </body>
-
-<script>
-
-</script>

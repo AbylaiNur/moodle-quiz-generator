@@ -8,14 +8,7 @@
 <body>
 
 <div class="container py-3" style="width:60%">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
-            <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
-            <li class="nav-item"><a href="/logout" class="nav-link" aria-current="page">Log out</a></li>
-        </ul>
-    </header>
+    <%- include('./partials/header') %>
     <div class="alert alert-info" role="alert">
         <h4>Advice</h4>
         We recommend you to generate only theoretical questions.<br>
@@ -75,11 +68,7 @@
             <button type="submit" class="btn btn-primary mb-3">Generate</button>
         </div>
     </form>
-    <footer class="mt-auto text-center">
-        <div class="inner">
-            <p>Developed by <a href="https://github.com/AbylaiNur">AbylaiNur</a> and <a href="https://github.com/xamss">Amanzhol Bakhtiyar</a></p>
-        </div>
-    </footer>
+    <%- include('./partials/footer') %>
 </div>
 
 </body>
