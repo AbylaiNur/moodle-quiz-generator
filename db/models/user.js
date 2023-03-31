@@ -20,9 +20,9 @@ class User {
             param);
     }
 
-    saveApiKey(param) {
-        return pool.query("INSERT INTO ")
-    }
+    // saveApiKey(param) {
+    //     return pool.query("INSERT INTO ")
+    // }
 }
 
 export {

@@ -58,7 +58,6 @@ ANSWER: D`
             max_tokens: 4097 - encode(prompt).length,
             temperature: 0.5
         });
-        console.log(completion.data.choices[0].text)
         return completion.data.choices[0].text;
     } catch (error) {
         if (error.response) {

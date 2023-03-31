@@ -12,10 +12,11 @@ import {
     index_context,
     index_home,
     index_quiz_context,
-    // index_quiz_history,
+    index_quiz_history,
     index_quiz_topic,
     index_topic,
 } from "./controllers/controller.js"
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -41,11 +42,11 @@ app.get('/context', isLoggedIn, index_context)
 
 app.get('/topic', isLoggedIn, index_topic)
 
-app.get('/quiz/topic', isLoggedIn, index_quiz_topic)
+app.get('/quiz/topic', getQuizLimiter, isLoggedIn, index_quiz_topic)
 
-app.get('/quiz/context', isLoggedIn, index_quiz_context)
+app.get('/quiz/context', getQuizLimiter, isLoggedIn, index_quiz_context)
 
-// app.get('/history/:id', isLoggedIn, index_quiz_history)
+app.get('/history', isLoggedIn, index_quiz_history)
 
 app.post('/download', isLoggedIn, download_quiz)
 

@@ -2,7 +2,7 @@ import {pool} from "../connection.js"
 
 class History {
     getHistoryByUserId(param) {
-        return pool.query("SELECT id, num_questions, topic from history WHERE type = $1 AND user_id = $2",
+        return pool.query("SELECT id, num_questions, topic from history WHERE user_id = $1",
             param);
     }
 

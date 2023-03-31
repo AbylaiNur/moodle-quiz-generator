@@ -4,6 +4,9 @@
         <li class="nav-item"><a href="/context" class="nav-link" aria-current="page">Context</a></li>
         <li class="nav-item"><a href="/topic" class="nav-link" aria-current="page">Topic</a></li>
         <% if (user) { %>
+            <li class="nav-item"><a href="/history" class="nav-link" aria-current="page">History</a></li>
+        <% }%>
+        <% if (user) { %>
             <li class="nav-item"><a href="/logout" class="nav-link" aria-current="page">Log out</a></li>
         <% } else { %>
             <li class="nav-item"><a href="/auth/google" class="nav-link" aria-current="page">Sign up/Log in</a></li>

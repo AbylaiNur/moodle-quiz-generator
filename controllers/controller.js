@@ -15,14 +15,16 @@ const index_topic = async (req, res) => {
     res.render('topic', {user: req.user})
 }
 
-// const index_quiz_history = async (req, res) => {
-//     const history = new History;
-//     const historyList = await history.getHistoryByUserId(['topic', req.user.id]);
-//     let quizAiken = []
-//     quizAiken = await history.getQuizById([req.params.id || historyList.rows[0].id]);
-//     quizAiken = quizAiken.rows[0].quiz;
-//     res.render("history", { data: { questions: quizAiken, logs: historyList.rows, type: 'topic' } })
-// }
+const index_quiz_history = async (req, res) => {
+    const history = new History;
+    const historyList = await history.getHistoryByUserId([req.user.id]);
+    let quizAiken = []
+    if(req.query.id || historyList.rows[0]){
+        quizAiken = await history.getQuizById([req.query.id || historyList.rows[0].id]);
+        quizAiken = quizAiken.rows[0].quiz;
+    }
+    res.render("history", { data: { questions: quizAiken, logs: historyList.rows}, user: req.user })
+}
 
 const index_quiz_topic = async (req, res) => {
     try {
@@ -63,9 +65,9 @@ const index_quiz_context = async (req, res) => {
                 }
                 count++
                 quiz = await getQuizAikenContext(req.query.context, 5, req.query.difficulty)
-                quiz = quiz.replaceAll('Answer', 'ANSWER')
+                quiz = quiz.replace('Answer', 'ANSWER')
             }
-            quiz = quiz.replaceAll(/([1-9]. )|([1-9][0-9]. )/gm, '')
+            quiz = quiz.replace(/([1-9]. )|([1-9][0-9]. )/gm, '')
             quiz = quiz.trim()
             quiz = quiz.split('\n\n')
             quizAiken = quizAiken.concat(quiz)
@@ -76,7 +78,7 @@ const index_quiz_context = async (req, res) => {
         }
 
         const history = new History;
-        history.saveHistory([req.user.id, req.query.topic, quizAiken, Number(req.query.questionsCount), 'topic']);
+        history.saveHistory([req.user.id, req.query.context, quizAiken, Number(req.query.questionsCount), 'context']);
         res.render("quiz", {data: {questions: quizAiken, type: 'context'}, user: req.user})
     } catch (error) {
         console.log(error.message)
@@ -113,5 +115,5 @@ export {
     download_quiz,
     index_quiz_topic,
     index_quiz_context,
-    // index_quiz_history
+    index_quiz_history
 }
