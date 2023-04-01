@@ -20,10 +20,9 @@ class History {
             param);
     }
 
-    createTables() {
-        return pool.query("CREATE TABLE IF NOT EXISTS Users (id bigserial PRIMARY KEY, created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(), firstname text NOT NULL, email citext UNIQUE NOT NULL, version uuid NOT NULL DEFAULT gen_random_uuid(), apiKey text)").then(
-            pool.query("CREATE TABLE IF NOT EXISTS History (id bigserial PRIMARY KEY, created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(), user_id bigint NOT NULL REFERENCES Users ON DELETE CASCADE, topic text NOT NULL, quiz text[] NOT NULL, num_questions integer NOT NULL, type text NOT NULL)")
-        )
+    async createTables() {
+        await pool.query("CREATE TABLE IF NOT EXISTS Users (id bigserial PRIMARY KEY, created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(), firstname text NOT NULL, email citext UNIQUE NOT NULL, version uuid NOT NULL DEFAULT gen_random_uuid(), apiKey text)")
+        await pool.query("CREATE TABLE IF NOT EXISTS History (id bigserial PRIMARY KEY, created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(), user_id bigint NOT NULL REFERENCES Users ON DELETE CASCADE, topic text NOT NULL, quiz text[] NOT NULL, num_questions integer NOT NULL, type text NOT NULL)")
     }
 }
 

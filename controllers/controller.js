@@ -28,6 +28,9 @@ const index_quiz_history = async (req, res) => {
 
 const index_quiz_topic = async (req, res) => {
     try {
+        if(req.query.topic.length>30){
+            res.redirect('/');
+        }
         let quizAiken = []
         for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 10) {
             let quiz = ''
@@ -45,7 +48,7 @@ const index_quiz_topic = async (req, res) => {
         }
 
         const history = new History;
-        history.saveHistory([req.user.id, req.query.topic, quizAiken, Number(req.query.questionsCount), 'topic']);
+        history.saveHistory([req.user.id, req.query.topic, quizAiken, Number(quizAiken.length), 'topic']);
         res.render("quiz", {data: {questions: quizAiken, type: 'topic'}, user: req.user})
     } catch (error) {
         console.log(error.message)
@@ -55,6 +58,9 @@ const index_quiz_topic = async (req, res) => {
 
 const index_quiz_context = async (req, res) => {
     try {
+        if(req.query.context.length>250){
+            res.redirect('/');
+        }
         let quizAiken = []
         for (let i = 0; i < Math.min(Number(req.query.questionsCount), 100); i += 5) {
             let quiz = ''
@@ -78,7 +84,7 @@ const index_quiz_context = async (req, res) => {
         }
 
         const history = new History;
-        history.saveHistory([req.user.id, req.query.context, quizAiken, Number(req.query.questionsCount), 'context']);
+        history.saveHistory([req.user.id, req.query.context, quizAiken, Number(quizAiken.length), 'context']);
         res.render("quiz", {data: {questions: quizAiken, type: 'context'}, user: req.user})
     } catch (error) {
         console.log(error.message)

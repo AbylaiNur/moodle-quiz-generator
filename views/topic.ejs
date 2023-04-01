@@ -3,6 +3,11 @@
 <head>
     <%- include('./partials/head') %>
     <title>Home</title>
+
+    <style>
+        .errorMsg {display: none;}
+        :invalid + .errorMsg {display: block;}
+    </style>
 </head>
 
 <body>
@@ -25,8 +30,9 @@
                         <p class="text-center"><strong>What topics should your quiz cover?</strong></p>
 
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="form3" rows="4" name="topic" placeholder="python if else">
-                        </div>
+                            <input class="form-control" id="form3" rows="4" name="topic" pattern=".{0,29}" maxlength="30" placeholder="python if else">
+                            <div class="text-danger errorMsg mt-2">Warning! You're not allowed to submit more than 30 characters</div>
+                        </div>  
                     </div>
                 </div>
 
